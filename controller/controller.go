@@ -1,4 +1,4 @@
-package main
+package controller
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Dorzuć do pieca!")
 }
 
-func main() {
+func Run() {
 	mux := http.NewServeMux()
 	mux.Handle("/", http.HandlerFunc(homePageHandler))
 	http.ListenAndServe(":8080", mux)
