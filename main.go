@@ -1,39 +1,26 @@
 package main
 
 import(
-	"github.com/wojciechsi/grzejemy.pl/controller"
 	"github.com/wojciechsi/grzejemy.pl/models"
+	"github.com/wojciechsi/grzejemy.pl/controllers"
+	"fmt"
+	"time"
 )
 
 func main () {
-	//controller.Run()
-	jacuśData := UserData{ 					//delare nested
-		name:     "Jacek Szedel", 			//struct
-		password: "1234",
-	}
+	go controllers.RunServer() //in another thread
 
-	jacuś := User{ 							//declare nesting
-		UserData:      jacuśData, 			//class
-		favouriteFuel: Opony,
-	}
+	jacuś := models.NewBuyer("Jacek")
+	jacek := models.NewVendor("dr Szedel")
 
-	var sklepyUJacka []string
+	var users []models.User
 
-	jacuśHandlarz := Vendor{
-		UserData:    jacuśData,
-		salesPoints: sklepyUJacka,
-	}
-
-	var users []Userer 						//polymorphic vector
-
+	users = append(users, jacek)
 	users = append(users, jacuś)
-	users = append(users, jacuśHandlarz)
 
-	fmt.Println(jacuś.getName()) 			//call method from
-											//nested struct
-											//as it would be
-											//inherited
+	for i := 0; i<len(users); i++ {
+		fmt.Println(users[i].GetName())
+	}
 
-	fmt.Println(users[0].getName()) 		//getName must be declared
-											//in interface definiction
+	time.Sleep(30 * time.Second) //wait enought time to visit localhost:8080
 }
