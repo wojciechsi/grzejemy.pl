@@ -1,5 +1,9 @@
 package models
 
 type FuelType struct {
-	name string;
+	Name string
+}
+
+func (f FuelType) GetFuelType() string {
+	return f.Name
 }
