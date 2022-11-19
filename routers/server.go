@@ -2,23 +2,25 @@ package routers
 
 import (
 	"fmt"
-	"net/http"
 	"html/template"
+	"net/http"
 	//"github.com/wojciechsi/grzejemy.pl/models"
 )
 
 type cat struct {
-	Name string
+	Name     string
 	Question string
 }
+
 func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Dorzuć do pieca!")
 }
 
+var templates = template.Must(template.ParseFiles("routers/offers.html"))
+
 func offerHandler(w http.ResponseWriter, r *http.Request) {
 	p := cat{Name: "Mr.Meow", Question: "I can has cheezburger?"}
-	t, _ := template.ParseFiles("offers.html")
-	t.Execute(w, p)
+	templates.ExecuteTemplate(w, "offers.html", p)
 }
 
 func RunServer() {
