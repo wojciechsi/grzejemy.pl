@@ -2,18 +2,20 @@ package db
 
 import (
 	"fmt"
-	"github.com/wojciechsi/grzejemy.pl/models"
 	"strconv"
+
+	"github.com/wojciechsi/grzejemy.pl/models"
 )
 
-func GetTestOffer() models.Offer {
+func GetTestOffer() []models.Offer {
 	//some data before DB will be created
 	jacuś := models.NewBuyer("Jacek")
 	jacek := models.NewVendor("dr Szedel")
 	jacex := models.NewSalesPoint("Gliwice", jacek)
 
-	taniosprzedam := models.NewOffer(jacex, models.FuelType{Name: "groszek"}, 3560.75)
-
+	taniosprzedam := models.NewOffer(jacex, models.FuelType{FuelName: "groszek"}, 3560.75)
+	taniosprzedam2 := models.NewOffer(jacex, models.FuelType{FuelName: "drewno"}, 900.75)
+	taniosprzedam3 := models.NewOffer(jacex, models.FuelType{FuelName: "ekogroszek"}, 5000.75)
 	komentarz := models.NewComment(jacuś, "nie polecam")
 	taniosprzedam.AddComment(komentarz)
 
@@ -27,5 +29,10 @@ func GetTestOffer() models.Offer {
 		taniosprzedam.GetComments()[0].GetContent() + " and verification status is: " +
 		strconv.FormatBool(taniosprzedam.GetComments()[0].IsVerified()))
 
-	return taniosprzedam
+	offers := []models.Offer{
+		taniosprzedam,
+		taniosprzedam2,
+		taniosprzedam3,
+	}
+	return offers
 }

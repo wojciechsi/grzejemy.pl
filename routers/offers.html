@@ -1,3 +1,36 @@
-<h1>Grzejemy.pl</h1>
-<p>{{.Name}}</p>
-<p>{{.Question}}</p>
+<html lang="pl-PL">
+    <head>
+        <meta charset="utf-8">
+        <title>Grzejemy.pl</title>
+    </head>
+
+    <body>
+        <h1>Grzejemy.pl</h1>
+        <ul>
+            {{range .OList}} 
+            <li>
+                Sprzedawca: {{.Name}}
+            </li>
+            <ul>
+                <li>Region: {{.Region}}</li>
+                <li>Rodzaj opału: {{.FuelType}}</li>
+                <li>Cena: {{.Price}} zł/tona</li>
+                <li>Komentarze</li>
+                    <ul>
+                        {{range .Comments}} 
+                            {{if .Verified}}
+                                <li>{{.User}}</li>
+                                <li>{{.Content}}</li>
+                                <li>ZWERYFIKOWANY</li>
+                            {{else}}
+                                <li>{{.User}}</li>
+                                <li>{{.Content}}</li>
+                                <li>NIEZWERYFIKOWANY</li>
+                            {{end}}
+                        {{end}}
+                    </ul>
+            </ul>
+            {{end}}
+        </ul>
+    </body>
+</html>

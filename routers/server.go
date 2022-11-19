@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-	//"github.com/wojciechsi/grzejemy.pl/models"
+
+	"github.com/wojciechsi/grzejemy.pl/db"
+	"github.com/wojciechsi/grzejemy.pl/models"
 )
 
-type cat struct {
-	Name     string
-	Question string
+type offersList struct{
+	OList [] models.Offer
 }
-
 func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Dorzuć do pieca!")
 }
@@ -19,8 +19,8 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 var templates = template.Must(template.ParseFiles("routers/offers.html"))
 
 func offerHandler(w http.ResponseWriter, r *http.Request) {
-	p := cat{Name: "Mr.Meow", Question: "I can has cheezburger?"}
-	err := templates.ExecuteTemplate(w, "offers.html", p)
+	o:= offersList{ db.GetTestOffer()}
+	err := templates.ExecuteTemplate(w, "offers.html", o)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

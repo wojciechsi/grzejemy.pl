@@ -9,8 +9,8 @@ type Offer struct {
 	SalesPoint
 	FuelType
 	time.Time
-	price    float64
-	comments []Comment
+	Price    float64
+	Comments []Comment
 }
 
 func NewOffer(salesPoint SalesPoint, fuelType FuelType, price float64) Offer {
@@ -24,13 +24,13 @@ func NewOffer(salesPoint SalesPoint, fuelType FuelType, price float64) Offer {
 }
 
 func (o *Offer) AddComment(c Comment) {
-	o.comments = append(o.comments, c)
+	o.Comments = append(o.Comments, c)
 }
 
 func (o *Offer) GetPrice() string {
-	return fmt.Sprintf("%8.2f", o.price)
+	return fmt.Sprintf("%8.2f", o.Price)
 }
 
 func (o *Offer) GetComments() []Comment {
-	return o.comments
+	return o.Comments
 }

@@ -1,15 +1,15 @@
 package models
 
 type UserData struct {
-	name, password string
+	Name, password string
 }
 
 func newUserData(name string) UserData {
 	return UserData{
-		name: name,
+		Name: name,
 	}
 }
 
 func (u UserData) GetName() string {
-	return u.name
+	return u.Name
 }

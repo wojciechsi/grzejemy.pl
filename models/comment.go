@@ -5,14 +5,14 @@ import "time"
 type Comment struct {
 	User
 	time.Time
-	content string
+	Content string
 	QualityFindings
-	verified bool
+	Verified bool
 }
 
 type QualityFindings struct {
-	quality     uint8
-	description string
+	Quality     uint8
+	Description string
 }
 
 func NewComment(user User, content string) Comment {
@@ -29,9 +29,9 @@ func NewComment(user User, content string) Comment {
 }
 
 func (c Comment) GetContent() string {
-	return c.content
+	return c.Content
 }
 
 func (c Comment) IsVerified() bool {
-	return c.verified
+	return c.Verified
 }
