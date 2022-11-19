@@ -10,3 +10,5 @@ func NewBuyer(name string) User {
 		UserData: newUserData(name),
 	}
 }
+
+//Can I has cheezburger
