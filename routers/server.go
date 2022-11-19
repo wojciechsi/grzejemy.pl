@@ -20,7 +20,10 @@ var templates = template.Must(template.ParseFiles("routers/offers.html"))
 
 func offerHandler(w http.ResponseWriter, r *http.Request) {
 	p := cat{Name: "Mr.Meow", Question: "I can has cheezburger?"}
-	templates.ExecuteTemplate(w, "offers.html", p)
+	err := templates.ExecuteTemplate(w, "offers.html", p)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
 func RunServer() {
