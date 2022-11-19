@@ -1,36 +1,70 @@
+<!DOCTYPE html>
 <html lang="pl-PL">
     <head>
+        <style>
+        /* body {
+            background-color: rgb(75, 75, 75);
+            z-index: -2;
+        }   */
+        h1 {
+            color: white;
+            text-align: center;
+        }
+        div.offers {
+            text-align: center;
+        }
+        ul.offersUL     {
+            color: white;
+            font-family: Monospace;
+            display: inline-block;
+            text-align: left;
+            list-style-type: square;
+        }
+        .rectangle {
+            width:20%;
+            height:100%;
+            background-color:#cb6300;
+            position:absolute;
+            left:50%;
+            transform:translate(-50%,-50%);
+            z-index: -1;
+        }
+          </style>
         <meta charset="utf-8">
+        <!-- <link rel="style" href="offers.css">  nie wiem czemu nie chce się podlinkować -->
         <title>Grzejemy.pl</title>
     </head>
 
     <body>
         <h1>Grzejemy.pl</h1>
-        <ul>
-            {{range .OList}} 
-            <li>
-                Sprzedawca: {{.Name}}
-            </li>
-            <ul>
-                <li>Region: {{.Region}}</li>
-                <li>Rodzaj opału: {{.FuelType}}</li>
-                <li>Cena: {{.Price}} zł/tona</li>
-                <li>Komentarze</li>
-                    <ul>
-                        {{range .Comments}} 
-                            {{if .Verified}}
-                                <li>{{.User}}</li>
-                                <li>{{.Content}}</li>
-                                <li>ZWERYFIKOWANY</li>
-                            {{else}}
-                                <li>{{.User}}</li>
-                                <li>{{.Content}}</li>
-                                <li>NIEZWERYFIKOWANY</li>
+        <div class="offers">
+            <ul class="offersUL">
+                {{range .OList}} 
+                <li>
+                    Sprzedawca: {{.Name}}
+                </li>
+                <ul>
+                    <li >Region: {{.Region}}</li>
+                    <li>Rodzaj opału: {{.FuelType}}</li>
+                    <li>Cena: {{.Price}} zł/tona</li>
+                    <li>Komentarze</li>
+                        <ul>
+                            {{range .Comments}} 
+                                {{if .Verified}}
+                                    <li>{{.User}}</li>
+                                    <li>{{.Content}}</li>
+                                    <li>ZWERYFIKOWANY</li>
+                                {{else}}
+                                    <li>{{.User}}</li>
+                                    <li>{{.Content}}</li>
+                                    <li>NIEZWERYFIKOWANY</li>
+                                {{end}}
                             {{end}}
-                        {{end}}
-                    </ul>
+                        </ul>
+                </ul>
+                {{end}}
             </ul>
-            {{end}}
-        </ul>
+        </div>
+        <div class="rectangle" ></div>
     </body>
 </html>
