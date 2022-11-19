@@ -19,18 +19,18 @@ func NewOffer(salesPoint SalesPoint, fuelType FuelType, price float64) Offer {
 		fuelType,
 		time.Now(),
 		price,
-		make([]Comment, 1),
+		make([]Comment, 0),
 	}
 }
 
-func (o Offer) AddComment(c Comment) {
+func (o *Offer) AddComment(c Comment) {
 	o.comments = append(o.comments, c)
 }
 
-func (o Offer) GetPrice() string {
+func (o *Offer) GetPrice() string {
 	return fmt.Sprintf("%8.2f", o.price)
 }
 
-func (o Offer) GetComments() []Comment {
+func (o *Offer) GetComments() []Comment {
 	return o.comments
 }

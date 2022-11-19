@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/wojciechsi/grzejemy.pl/models"
 	"github.com/wojciechsi/grzejemy.pl/routers"
+	"strconv"
 	"time"
 )
 
@@ -24,9 +25,9 @@ func main() {
 		" sells " + taniosprzedam.GetFuelType() +
 		" " + taniosprzedam.GetPrice() + " per tone" +
 		" offered " + taniosprzedam.Time.String()) //tu jak widać nie ma sensu nazwyać wszystkich pól structa xD
-	//fmt.Println(taniosprzedam.GetComments()[0].GetName() + " says: " +
-	//	taniosprzedam.GetComments()[0].GetContent() + " and verification status is: " +
-	//	strconv.FormatBool(taniosprzedam.GetComments()[0].IsVerified()))
+	fmt.Println(taniosprzedam.GetComments()[0].GetName() + " says: " +
+		taniosprzedam.GetComments()[0].GetContent() + " and verification status is: " +
+		strconv.FormatBool(taniosprzedam.GetComments()[0].IsVerified()))
 
 	time.Sleep(30 * time.Second) //wait enought ime to visit localhost:8080
 }
